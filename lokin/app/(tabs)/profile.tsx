@@ -1,19 +1,9 @@
-import { StyleSheet, Image, Platform } from 'react-native';
-
-import { Collapsible } from '@/components/Collapsible';
-import { ExternalLink } from '@/components/ExternalLink';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { IconSymbol } from '@/components/ui/IconSymbol';
+import { Text } from 'react-native';
 
 export default function Profile() {
   return (
     <>
+      <Text className="text-white dark:text-white"></Text>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  
-});

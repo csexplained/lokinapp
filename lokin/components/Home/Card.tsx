@@ -1,19 +1,8 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, Image, useColorScheme } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-
-interface SocialCardProps {
-    imageUrl: string;
-    title: string;
-    subtitle: string;
-    description: string;
-    topTitle?: string; // New prop for the top title/designation
-    onLike: () => void;
-    onShare: () => void;
-    onSave: () => void;
-    likeCount: number;
-    isLiked?: boolean;
-}
+import SocialCardProps from '@/types/card';
+import { Link, router } from 'expo-router';
 
 const SocialCard: React.FC<SocialCardProps> = ({
     imageUrl,
@@ -33,12 +22,11 @@ const SocialCard: React.FC<SocialCardProps> = ({
     const actionIconColor = colorScheme === 'dark' ? '#FFF' : '#000';
     const actioniconbg = colorScheme === 'dark' ? '#2B2A2A' : '#E9E9E9'
     return (
-        <View style={styles.cardContainer}>
+        <TouchableOpacity onPress={() => router.push("/CardProfile/profile")} style={styles.cardContainer}>
             <ImageBackground
                 source={{ uri: imageUrl }}
                 style={styles.cardBackground}
                 imageStyle={styles.cardImageStyle}
-                blurRadius={5}
             >
                 {/* Overlay with dominant color */}
                 <View style={[styles.overlay, { backgroundColor: `${dominantColor}80` }]} />
@@ -96,7 +84,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
 
                 </View>
             </ImageBackground>
-        </View>
+        </TouchableOpacity>
     );
 };
 
