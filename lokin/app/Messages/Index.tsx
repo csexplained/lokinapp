@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { Ionicons, MaterialIcons, FontAwesome, Entypo } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { CustomShare } from '@/assets/icons/iconsheader';
 
 const { width, height } = Dimensions.get('window');
 
@@ -117,9 +118,12 @@ const MessagesListPage = () => {
             backgroundColor: colorScheme === 'dark' ? '#000' : '#000',
         },
         inputContainer: {
-            backgroundColor: colorScheme === 'dark' ? '#1E1E1E' : '#F5F5F5',
+            backgroundColor: colorScheme === 'dark' ? '#0F0F0F' : '#F5F5F5',
         },
-        input: {
+        sendbox: {
+            backgroundColor: colorScheme === 'dark' ? '#000' : '#FFF',
+        },
+        inputbox: {
             color: colorScheme === 'dark' ? '#FFFFFF' : '#000000',
             backgroundColor: colorScheme === 'dark' ? '#2D2D2D' : '#FFFFFF',
         },
@@ -292,30 +296,31 @@ const MessagesListPage = () => {
                         <Entypo
                             name={showAttachments ? "chevron-down" : "plus"}
                             size={24}
-                            color={colorScheme === 'dark' ? '#FFFFFF' : '#000000'}
+                            color={colorScheme === 'dark' ? '#000000' : '#ffffff'}
                         />
                     </TouchableOpacity>
+                    <View style={[styles.input, themeStyles.inputbox]}>
+                        <TextInput
 
-                    <TextInput
-                        style={[styles.input, themeStyles.input]}
-                        placeholder="Type a message..."
-                        placeholderTextColor={colorScheme === 'dark' ? '#AAAAAA' : '#666666'}
-                        value={newMessage}
-                        onChangeText={setNewMessage}
-                        multiline
-                    />
-
-                    <TouchableOpacity
-                        style={styles.sendButton}
-                        onPress={handleSendMessage}
-                        disabled={!newMessage.trim()}
-                    >
-                        <Ionicons
-                            name="send"
-                            size={24}
-                            color={newMessage.trim() ? '#007AFF' : (colorScheme === 'dark' ? '#555' : '#CCC')}
+                            placeholder="Type message..."
+                            placeholderTextColor={colorScheme === 'dark' ? '#AAAAAA' : '#666666'}
+                            value={newMessage}
+                            onChangeText={setNewMessage}
+                            multiline
                         />
-                    </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.sendButton, themeStyles.sendbox]}
+                            onPress={handleSendMessage}
+                            disabled={!newMessage.trim()}
+                        >
+                            <CustomShare
+                                size={24}
+                                color={newMessage.trim() ? '#007AFF' : (colorScheme === 'dark' ? '#fff' : '#000')}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
                 </View>
             </View>
 
@@ -340,7 +345,7 @@ const MessagesListPage = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: Platform.OS === 'ios' ? 50 : 50,
+        paddingTop: Platform.OS === 'ios' ? 50 : 30,
     },
     header: {
         flexDirection: 'row',
@@ -382,7 +387,10 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     messagesContainer: {
-        backgroundColor: "#000000",
+        backgroundColor: "#0F0F0F",
+        borderWidth: 0.3,
+        borderColor: "#fff",
+        borderBottomWidth: 0,
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         flex: 1,
@@ -459,8 +467,6 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         padding: 10,
-        borderTopWidth: 0.5,
-        borderTopColor: 'rgba(0,0,0,0.1)',
     },
     attachmentMenu: {
         flexDirection: 'row',
@@ -483,20 +489,32 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     attachmentToggle: {
+        backgroundColor: "#fff",
+        borderRadius: 30,
         padding: 10,
     },
     input: {
         flex: 1,
-        minHeight: 40,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        borderColor: "#fff",
+        borderWidth: 0.3,
         maxHeight: 120,
-        borderRadius: 20,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        borderRadius: 30,
+        paddingRight: 3,
+        paddingLeft: 10,
+        paddingVertical: 4,
         marginHorizontal: 5,
         fontSize: 16,
     },
     sendButton: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         padding: 10,
+        borderRadius: 30
+
     },
     menuContainer: {
         position: 'absolute',
