@@ -3,7 +3,7 @@ import { View, Text, ImageBackground, StyleSheet, TouchableOpacity, Image, useCo
 import { Ionicons } from '@expo/vector-icons';
 import SocialCardProps from '@/types/card';
 import { Link, router } from 'expo-router';
-
+import { BlueCheckIcon} from "@/assets/icons/iconsheader"
 const SocialCard: React.FC<SocialCardProps> = ({
     imageUrl,
     title,
@@ -44,7 +44,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
                             />
                         </View>
                         <View style={styles.headerText}>
-                            <Text style={styles.title}>{title}</Text>
+                            <Text style={styles.title}>{title}  <BlueCheckIcon/></Text>
                             <Text style={styles.subtitle}>{subtitle}</Text>
                         </View>
                     </View>
@@ -147,6 +147,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#FFF',
         marginBottom: 4,
+        marginRight : 4
     },
     subtitle: {
         fontSize: 12,
