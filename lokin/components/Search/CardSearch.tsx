@@ -34,20 +34,7 @@ const SocialCard: React.FC<SocialCardProps> = ({
                 {/* Card content */}
                 <View style={styles.cardContent}>
                     {/* Header section */}
-                    <View style={styles.header}>
-                        <View style={styles.avatarContainer}>
-                            <Image
-                                source={{ uri: imageUrl }}
-                                style={styles.avatar}
-                                resizeMode="contain"
 
-                            />
-                        </View>
-                        <View style={styles.headerText}>
-                            <Text style={styles.title}>{title}  <BlueCheckIcon /></Text>
-                            <Text style={styles.subtitle}>{subtitle}</Text>
-                        </View>
-                    </View>
                     {/* Action bar */}
                     <View style={styles.actionBar}>
                         <View style={[styles.actionBar2, { backgroundColor: actionBarBg }]}>
@@ -71,14 +58,19 @@ const SocialCard: React.FC<SocialCardProps> = ({
                     </View>
 
 
-                    <View>
-                        {/* Description */}
-                        <Text style={[styles.topTitle, { color: colorScheme === 'dark' ? '#FFF' : '#000' }]}>
-                            {topTitle}
-                        </Text>
-                        <Text style={[styles.description, { color: colorScheme === 'dark' ? '#FFF' : '#000' }]} numberOfLines={3}>
-                            {description}
-                        </Text>
+                    <View style={styles.header}>
+                        <View style={styles.avatarContainer}>
+                            <Image
+                                source={{ uri: imageUrl }}
+                                style={styles.avatar}
+                                resizeMode="contain"
+
+                            />
+                        </View>
+                        <View style={styles.headerText}>
+                            <Text style={styles.title}>{title}  <BlueCheckIcon /></Text>
+                            <Text style={styles.subtitle}>{subtitle}</Text>
+                        </View>
                     </View>
 
 
@@ -100,7 +92,7 @@ const styles = StyleSheet.create({
         borderColor: "#fff",
         borderWidth: 0.3,
         width: "auto",
-        height: "auto", // Increased card height
+        height: 550, // Increased card height
     },
     cardBackground: {
         width: '100%',
@@ -173,7 +165,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         padding: 5,
         borderRadius: 20,
-        marginTop: 8,
+        marginTop: 130,
     },
     actionBar2: {
         flexDirection: 'column',

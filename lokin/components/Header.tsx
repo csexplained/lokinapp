@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, useColorScheme } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Dropdown } from 'react-native-element-dropdown';
+import { Link, router } from 'expo-router';
 
 const Header = () => {
     const colorScheme = useColorScheme();
@@ -70,7 +71,7 @@ const Header = () => {
 
                 {/* Action Icons */}
                 <View style={styles.actions}>
-                    <TouchableOpacity style={[styles.iconButton, { backgroundColor: isDark ? '#000' : '#EEE' }]}>
+                    <TouchableOpacity onPress={() => router.push("/Search/Search")} style={[styles.iconButton, { backgroundColor: isDark ? '#000' : '#EEE' }]}>
                         <Ionicons name="search" size={20} color={iconColor} />
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.iconButton, { backgroundColor: isDark ? '#000' : '#EEE' }]}>

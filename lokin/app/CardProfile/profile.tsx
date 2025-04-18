@@ -17,7 +17,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs'; // Adjust the import pat
 import Accordion from "@/components/Accordion";
-import { BlueCheckIcon } from "@/assets/icons/iconsheader";
+import { BlueCheckIcon, CommentIcon, CustomShare } from "@/assets/icons/iconsheader";
 const FAQ_DATA = [
   {
     question: "How do I reset my password?",
@@ -321,7 +321,7 @@ const SocialCard: React.FC = () => {
                       style={styles.commentButton}
                       activeOpacity={0.7}
                     >
-                      <Ionicons name="send-outline" size={20} color={actionIconColor} />
+                      <CustomShare  size={20} color={actionIconColor} />
                     </TouchableOpacity>
                   </View>
                 </View>
