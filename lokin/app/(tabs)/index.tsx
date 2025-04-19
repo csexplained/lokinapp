@@ -53,7 +53,7 @@ export default function App() {
           infinite
           stackSize={3}           // ✅ Show multiple stacked cards
           stackSeparation={15}    // ✅ Spacing between cards
-          stackScale={10}         // ✅ Optional 3D look
+          stackScale={50}         // ✅ Optional 3D look
           animateCardOpacity
           swipeAnimationDuration={400}
         />

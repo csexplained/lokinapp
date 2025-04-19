@@ -9,9 +9,9 @@ import { BlurView } from "expo-blur";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const activeColor = "#FFFFFF";
-  const inactiveColor = colorScheme === 'dark' ? '#ffffff' : '#ffffff';
-  const iconBgColor = colorScheme === 'dark' ? '#1D1D1D' : '#E9E9E9';
+  const activeColor = colorScheme === "dark" ? "#FFFFFF" : "#000000"; // Always white for active icons
+  const inactiveColor = colorScheme === "dark" ? "#FFFFFF" : "#000000"; // Always white for inactive icons (with opacity handled by icons themselves)
+  const iconBgColor = colorScheme === 'dark' ? '#1D1D1D' : '#E9E9E9'; // Background changes based on theme
 
   return (
     <Tabs
@@ -19,7 +19,6 @@ export default function TabLayout() {
         tabBarActiveTintColor: activeColor,
         tabBarInactiveTintColor: inactiveColor,
         headerShown: false,
-
         tabBarShowLabel: false,
         tabBarButton: HapticTab,
         tabBarStyle: {
@@ -29,14 +28,13 @@ export default function TabLayout() {
           borderTopColor: 'transparent',
           elevation: 0,
           shadowColor: 'transparent',
-          height: 70, // ⬆️ increased
-          overflow: 'visible', // ✅ allow icons to overflow a bit
+          height: 70,
+          overflow: 'visible',
           paddingBottom: Platform.OS === 'ios' ? 20 : 10,
         },
-
         tabBarBackground: () => (
           <BlurView
-            intensity={30}
+            intensity={0}
             tint={colorScheme === 'dark' ? 'dark' : 'light'}
             style={StyleSheet.absoluteFill}
           />
@@ -53,11 +51,13 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ color, focused }) => (
             <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
-              <BriefcaseIcon
-                width={20}
-                height={20}
-                color={focused ? activeColor : inactiveColor}
-              />
+              <View style={{ opacity: focused ? 1 : 0.7 }}>
+                <BriefcaseIcon
+                  width={20}
+                  height={20}
+                  color={focused ? activeColor : inactiveColor}
+                />
+              </View>
             </View>
           ),
         }}
@@ -67,11 +67,13 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ color, focused }) => (
             <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
-              <BookmarkIcon
-                width={20}
-                height={20}
-                color={focused ? activeColor : inactiveColor}
-              />
+              <View style={{ opacity: focused ? 1 : 0.7 }}>
+                <BookmarkIcon
+                  width={20}
+                  height={20}
+                  color={focused ? activeColor : inactiveColor}
+                />
+              </View>
             </View>
           ),
         }}
@@ -81,11 +83,13 @@ export default function TabLayout() {
         options={{
           tabBarIcon: ({ color, focused }) => (
             <View style={[styles.iconContainer, { backgroundColor: iconBgColor }]}>
-              <ChatIcon
-                width={20}
-                height={20}
-                color={focused ? activeColor : inactiveColor}
-              />
+              <View style={{ opacity: focused ? 1 : 0.7 }}>
+                <ChatIcon
+                  width={20}
+                  height={20}
+                  color={focused ? activeColor : inactiveColor}
+                />
+              </View>
             </View>
           ),
         }}
@@ -102,7 +106,7 @@ export default function TabLayout() {
                   height: 30,
                   borderRadius: 30,
                   borderWidth: 2,
-                  borderColor: focused ? activeColor : inactiveColor,
+                  borderColor: focused ? activeColor : `${inactiveColor}99`, // Slight transparency for inactive
                 }}
                 resizeMode="cover"
               />

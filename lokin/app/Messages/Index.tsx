@@ -55,7 +55,7 @@ const MessagesListPage = () => {
             },
             {
                 id: '3',
-                image: 'https://res.cloudinary.com/dxae5w6hn/image/upload/v1744991885/ukhbigxbjkrbj91yfcqk.png',
+                image: 'https://res.cloudinary.com/dxae5w6hn/image/upload/v1744973313/gpqrdgxxvw5canwyvjts.png',
                 sender: 'other',
                 time: '10:33 AM',
                 date: 'Today'
@@ -118,10 +118,13 @@ const MessagesListPage = () => {
             backgroundColor: colorScheme === 'dark' ? '#000' : '#000',
         },
         inputContainer: {
-            backgroundColor: colorScheme === 'dark' ? '#0F0F0F' : '#F5F5F5',
+            backgroundColor: colorScheme === 'dark' ? '#0F0F0F' : '#F5F5F0',
         },
         sendbox: {
             backgroundColor: colorScheme === 'dark' ? '#000' : '#FFF',
+        },
+        massagecontainer: {
+            backgroundColor: colorScheme === "dark" ? "#0F0F0F" : "#ffffff",
         },
         inputbox: {
             color: colorScheme === 'dark' ? '#FFFFFF' : '#000000',
@@ -235,7 +238,7 @@ const MessagesListPage = () => {
             <View style={[styles.header]}>
                 <TouchableOpacity
                     style={[styles.backButton, themeStyles.actionButton]}
-                    onPress={() => router.back()}
+                    onPress={() => router.push("/(tabs)/messages")}
                 >
                     <Ionicons name="chevron-back" size={20} color="#FFF" />
                 </TouchableOpacity>
@@ -262,7 +265,7 @@ const MessagesListPage = () => {
             {/* Messages Container */}
             <ScrollView
                 ref={scrollViewRef}
-                style={styles.messagesContainer}
+                style={[styles.messagesContainer, themeStyles.massagecontainer]}
                 contentContainerStyle={styles.messagesContent}
                 onContentSizeChange={() => scrollViewRef.current?.scrollToEnd({ animated: true })}
             >
@@ -296,7 +299,7 @@ const MessagesListPage = () => {
                         <Entypo
                             name={showAttachments ? "chevron-down" : "plus"}
                             size={24}
-                            color={colorScheme === 'dark' ? '#000000' : '#ffffff'}
+                            color={colorScheme === 'dark' ? '#000000' : '#000000'}
                         />
                     </TouchableOpacity>
                     <View style={[styles.input, themeStyles.inputbox]}>
@@ -387,7 +390,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
     },
     messagesContainer: {
-        backgroundColor: "#0F0F0F",
+
         borderWidth: 0.3,
         borderColor: "#fff",
         borderBottomWidth: 0,
@@ -437,7 +440,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 150,
         borderRadius: 10,
-        marginBottom: 5,
+        marginBottom: 0,
     },
     voiceMessage: {
         flexDirection: 'row',

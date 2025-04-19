@@ -58,7 +58,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
     // Theme colors
     const themeStyles = {
         container: {
-            backgroundColor: isDark ? '#202020' : '#FFF',
+            backgroundColor: isDark ? '#202020' : '#E9E9E9',
         },
         text: {
             color: isDark ? '#FFF' : '#000',
@@ -67,7 +67,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             color: isDark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
         },
         menuButton: {
-            backgroundColor: "#000000",
+            backgroundColor: isDark  ? "#000000" : "#ffffff",
         },
         divider: {
             backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',

@@ -50,8 +50,9 @@ const AccordionItem: React.FC<{
           backgroundColor: isActive
             ? colorScheme === 'dark' ? '#202020' : 'rgba(240, 240, 240, 0.5)'
             : 'transparent',
-          borderTopColor: colorScheme === 'dark' ? '#fff' : 'rgba(0, 0, 0, 0.1)',
-          borderRadius: isActive ? 20 : 0
+          borderColor: colorScheme === 'dark' ? '#fff' : 'transparent',
+          borderRadius: isActive ? 20 : 20,
+          borderWidth: isActive ? 0.2 : 0,
         }
       ]}
     >
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   accordionItem: {
-    borderWidth: 0.2,
+
     overflow: 'hidden',
   },
   accordionHeader: {

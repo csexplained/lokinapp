@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 
 interface TabsProps {
     defaultValue: string;
@@ -39,19 +39,37 @@ const Tabs = ({ defaultValue, children }: TabsProps) => {
 };
 
 const TabsList = ({ children }: TabsListProps) => {
-    return <View style={styles.tabsList}>{children}</View>;
+    const colorScheme = useColorScheme();
+    const borderColor = colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)';
+
+    return (
+        <View style={[styles.tabsList, { borderColor }]}>
+            {children}
+        </View>
+    );
 };
 
 const TabsTrigger = ({ value, children }: TabsTriggerProps) => {
     const { activeTab, setActiveTab } = React.useContext(TabsContext);
+    const colorScheme = useColorScheme();
     const isActive = activeTab === value;
+
+    const activeBgColor = colorScheme === 'dark' ? '#2B2A2A' : '#E9E9E9';
+    const inactiveTextColor = colorScheme === 'dark' ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)';
+    const activeTextColor = colorScheme === 'dark' ? '#FFFFFF' : '#000000';
 
     return (
         <TouchableOpacity
-            style={[styles.tabTrigger, isActive && styles.activeTabTrigger]}
+            style={[
+                styles.tabTrigger,
+                isActive && { backgroundColor: activeBgColor }
+            ]}
             onPress={() => setActiveTab(value)}
         >
-            <Text style={[styles.tabTriggerText, isActive && styles.activeTabTriggerText]}>
+            <Text style={[
+                styles.tabTriggerText,
+                { color: isActive ? activeTextColor : inactiveTextColor }
+            ]}>
                 {children}
             </Text>
         </TouchableOpacity>
@@ -72,7 +90,6 @@ const styles = StyleSheet.create({
     },
     tabsList: {
         flexDirection: 'row',
-        borderColor: "#fff",
         borderWidth: 0.3,
         padding: 4,
         borderRadius: 30,
@@ -85,16 +102,9 @@ const styles = StyleSheet.create({
         paddingVertical: 4,
         marginRight: 8,
     },
-    activeTabTrigger: {
-        backgroundColor: "#2B2A2A"
-    },
     tabTriggerText: {
-        color: 'rgba(255, 255, 255, 0.7)',
         fontWeight: '500',
         fontSize: 14,
-    },
-    activeTabTriggerText: {
-        color: '#ffffff',
     },
     tabContent: {
         paddingVertical: 16,
@@ -102,4 +112,4 @@ const styles = StyleSheet.create({
 });
 
 // Export the components
-export { Tabs, TabsList, TabsTrigger, TabsContent }; 
+export { Tabs, TabsList, TabsTrigger, TabsContent };

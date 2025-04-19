@@ -52,6 +52,36 @@ const MessagesListPage = () => {
       isOnline: true,
       avatar: "https://res.cloudinary.com/dxae5w6hn/image/upload/v1744991885/ukhbigxbjkrbj91yfcqk.png",
     },
+    {
+      id: '4',
+      name: 'John Doe',
+      status: 'Awesome',
+      lastMessage: 'Hey, how are you doing?',
+      time: '10:30 AM',
+      unreadCount: 2,
+      isOnline: true,
+      avatar: "https://res.cloudinary.com/dxae5w6hn/image/upload/v1744991885/ukhbigxbjkrbj91yfcqk.png",
+    },
+    {
+      id: '5',
+      name: 'John Doe',
+      status: 'Awesome',
+      lastMessage: 'Hey, how are you doing?',
+      time: '10:30 AM',
+      unreadCount: 2,
+      isOnline: true,
+      avatar: "https://res.cloudinary.com/dxae5w6hn/image/upload/v1744991885/ukhbigxbjkrbj91yfcqk.png",
+    },
+    {
+      id: '6',
+      name: 'John Doe',
+      status: 'Awesome',
+      lastMessage: 'Hey, how are you doing?',
+      time: '10:30 AM',
+      unreadCount: 2,
+      isOnline: true,
+      avatar: "https://res.cloudinary.com/dxae5w6hn/image/upload/v1744991885/ukhbigxbjkrbj91yfcqk.png",
+    },
     // Add more messages as needed
   ];
 
@@ -114,6 +144,7 @@ const MessagesListPage = () => {
       <ScrollView style={styles.content}>
         {messages.map((message) => (
           <Usercard
+            key={message.id}
             {...message}
           />
         ))}

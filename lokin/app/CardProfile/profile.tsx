@@ -15,9 +15,10 @@ import {
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs'; // Adjust the import pat
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/Tabs';
 import Accordion from "@/components/Accordion";
 import { BlueCheckIcon, CommentIcon, CustomShare } from "@/assets/icons/iconsheader";
+
 const FAQ_DATA = [
   {
     question: "How do I reset my password?",
@@ -31,9 +32,10 @@ const FAQ_DATA = [
     question: "What is hush protocool?",
     answer: " hush protocool? is a method used in cyber security to create hush its a protocool"
   },
-  // Add more FAQ items as needed
 ];
+
 const { width, height } = Dimensions.get('window');
+
 const SocialCard: React.FC = () => {
   const {
     imageUrl,
@@ -46,6 +48,62 @@ const SocialCard: React.FC = () => {
   } = cardData[0];
 
   const [activeTab, setActiveTab] = React.useState("Details");
+  const colorScheme = useColorScheme();
+
+  // Theme colors
+  const themeStyles = {
+    container: {
+      backgroundColor: colorScheme === 'dark' ? '#000' : '#E9E9E9',
+    },
+    text: {
+      color: colorScheme === 'dark' ? '#FFF' : '#808080',
+    },
+    commentcontainer: {
+      borderColor: colorScheme === "dark" ? "#fff" : "#000",
+    },
+    secondaryText: {
+      color: colorScheme === 'dark' ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.7)',
+    },
+    actionBar: {
+      backgroundColor: colorScheme === 'dark' ? 'rgba(30, 30, 30, 0.8)' : 'rgba(255, 255, 255, 0.8)',
+    },
+    actionIcon: {
+      color: colorScheme === 'dark' ? '#FFF' : '#000',
+    },
+    actionIconBg: {
+      backgroundColor: colorScheme === 'dark' ? '#2B2A2A' : '#E9E9E9',
+    },
+    tagBg: {
+      backgroundColor: colorScheme === 'dark' ? '#000' : '#E9E9E9',
+    },
+    tagText: {
+      color: colorScheme === 'dark' ? '#FFF' : '#000',
+    },
+    divider: {
+      backgroundColor: colorScheme === 'dark' ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+    },
+    tabSection: {
+      backgroundColor: colorScheme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)',
+    },
+    teamSizeBg: {
+      backgroundColor: colorScheme === 'dark' ? '#202020' : '#E0E0E0',
+    },
+    applicationButtonBg: {
+      backgroundColor: colorScheme === 'dark' ? '#202020' : '#E0E0E0',
+    },
+    buttonBg: {
+      backgroundColor: colorScheme === 'dark' ? '#FFF' : '#000',
+    },
+    buttonText: {
+      color: colorScheme === 'dark' ? '#000' : '#FFF',
+    },
+    commentButtonBg: {
+      backgroundColor: colorScheme === 'dark' ? '#2B2A2A' : '#E9E9E9',
+    },
+    metadataValue: {
+      color: colorScheme === 'dark' ? '#FFF' : '#000',
+    },
+  };
 
   const onLike = async () => {
     // Like functionality
@@ -59,29 +117,8 @@ const SocialCard: React.FC = () => {
     // Save functionality
   };
 
-  const colorScheme = useColorScheme();
-  const dominantColor = ""; // fallback color
-  const actionBarBg =
-    colorScheme === "dark"
-      ? "rgba(30, 30, 30, 0.8)"
-      : "rgba(255, 255, 255, 0.8)";
-  const actionIconColor = colorScheme === "dark" ? "#FFF" : "#000";
-  const actioniconbg = colorScheme === "dark" ? "#2B2A2A" : "#E9E9E9";
-  const textColor = colorScheme === "dark" ? "#FFF" : "#000";
-  const secondaryTextColor =
-    colorScheme === "dark" ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.7)";
-  const tagBg = colorScheme === "dark" ? "#000" : "#E9E9E9";
-  const tagText = colorScheme === "dark" ? "#FFF" : "#000";
-  const dividerColor =
-    colorScheme === "dark" ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.2)";
-  const tabBg = colorScheme === "dark" ? "#1E1E1E" : "#F5F5F5";
-  const inputBg = colorScheme === "dark" ? "#2B2B2B" : "#F0F0F0";
-  const buttonBg = colorScheme === "dark" ? "#FFF" : "#000";
-  const buttonText = colorScheme === "dark" ? "#000" : "#FFF";
-  const activeTabBg = colorScheme === "dark" ? "#3A3A3A" : "#E0E0E0";
-
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: colorScheme === 'dark' ? '#000' : '#FFF' }]}>
+    <SafeAreaView style={[styles.safeArea, themeStyles.container]}>
       <StatusBar
         barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
       />
@@ -96,7 +133,6 @@ const SocialCard: React.FC = () => {
             style={styles.cardImage}
             resizeMode="cover"
           >
-            {/* Overlay for better text visibility */}
             <View style={styles.imageOverlay} />
 
             {/* Header positioned at top of image */}
@@ -115,46 +151,37 @@ const SocialCard: React.FC = () => {
             </View>
 
             {/* Absolute positioned action buttons on right side */}
-            <View style={[styles.actionBar, { backgroundColor: actionBarBg }]}>
+            <View style={[styles.actionBar, themeStyles.actionBar]}>
               <TouchableOpacity
                 onPress={onLike}
-                style={[
-                  styles.actionButton,
-                  { backgroundColor: actioniconbg },
-                ]}
+                style={[styles.actionButton, themeStyles.actionIconBg]}
               >
                 <Ionicons
                   name={isLiked ? "heart" : "heart-outline"}
                   size={20}
-                  color={isLiked ? "#FF5252" : actionIconColor}
+                  color={isLiked ? "#FF5252" : themeStyles.actionIcon.color}
                 />
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={onShare}
-                style={[
-                  styles.actionButton,
-                  { backgroundColor: actioniconbg },
-                ]}
+                style={[styles.actionButton, themeStyles.actionIconBg]}
               >
                 <Ionicons
                   name="share-social-outline"
                   size={20}
-                  color={actionIconColor}
+                  color={themeStyles.actionIcon.color}
                 />
               </TouchableOpacity>
 
               <TouchableOpacity
                 onPress={onSave}
-                style={[
-                  styles.actionButton,
-                  { backgroundColor: actioniconbg },
-                ]}
+                style={[styles.actionButton, themeStyles.actionIconBg]}
               >
                 <Ionicons
                   name="bookmark-outline"
                   size={20}
-                  color={actionIconColor}
+                  color={themeStyles.actionIcon.color}
                 />
               </TouchableOpacity>
             </View>
@@ -165,10 +192,10 @@ const SocialCard: React.FC = () => {
         <View style={styles.contentContainer}>
           {/* Main content */}
           <View style={styles.textContent}>
-            <Text style={[styles.topTitle, { color: textColor }]}>
+            <Text style={[styles.topTitle, themeStyles.text]}>
               {topTitle}
             </Text>
-            <Text style={[styles.description, { color: textColor }]}>
+            <Text style={[styles.description, themeStyles.text]}>
               {description}
             </Text>
 
@@ -176,9 +203,9 @@ const SocialCard: React.FC = () => {
               {["#startup", "#technology", "#cybersecurity"].map((tag) => (
                 <View
                   key={tag}
-                  style={[styles.tag, { backgroundColor: tagBg }]}
+                  style={[styles.tag, themeStyles.tagBg]}
                 >
-                  <Text style={[styles.tagText, { color: tagText }]}>
+                  <Text style={[styles.tagText, themeStyles.tagText]}>
                     {tag}
                   </Text>
                 </View>
@@ -186,36 +213,36 @@ const SocialCard: React.FC = () => {
             </View>
           </View>
 
-          <View style={[styles.divider, { backgroundColor: dividerColor }]} />
+          <View style={[styles.divider, themeStyles.divider]} />
 
           {/* Metadata Section */}
           <View style={styles.metadataContainer}>
             <View style={styles.metadataRow}>
               <View style={styles.metadataColumn}>
                 <View style={styles.metadataItem}>
-                  <Text style={[styles.metadataText, { color: secondaryTextColor }]}>
-                    Category: <Text style={styles.metadataValue}>Cyber Security</Text>
+                  <Text style={[styles.metadataText, themeStyles.secondaryText]}>
+                    Category: <Text style={[styles.metadataValue, themeStyles.metadataValue]}>Cyber Security</Text>
                   </Text>
                 </View>
                 <View style={styles.metadataItem}>
-                  <Text style={[styles.metadataText, { color: secondaryTextColor }]}>
-                    Created by: <Text style={styles.metadataValue}>Bhanu Pratap</Text>
+                  <Text style={[styles.metadataText, themeStyles.secondaryText]}>
+                    Created by: <Text style={[styles.metadataValue, themeStyles.metadataValue]}>Bhanu Pratap</Text>
                   </Text>
                 </View>
                 <View style={styles.metadataItem}>
-                  <Text style={[styles.metadataText, { color: secondaryTextColor }]}>
-                    Date Posted: <Text style={styles.metadataValue}>Sep 11th</Text>
+                  <Text style={[styles.metadataText, themeStyles.secondaryText]}>
+                    Date Posted: <Text style={[styles.metadataValue, themeStyles.metadataValue]}>Sep 11th</Text>
                   </Text>
                 </View>
               </View>
               <View style={styles.metadataColumnRight}>
-                <View style={[styles.teamSizeContainer, { backgroundColor: colorScheme === 'dark' ? '#202020' : '#E0E0E0' }]}>
+                <View style={[styles.teamSizeContainer, themeStyles.teamSizeBg]}>
                   <Ionicons
                     name="people"
                     size={18}
-                    color={secondaryTextColor}
+                    color={themeStyles.secondaryText.color}
                   />
-                  <Text style={[styles.teamSizeText, { color: textColor }]}>
+                  <Text style={[styles.teamSizeText, themeStyles.text]}>
                     Team Size: 1
                   </Text>
                 </View>
@@ -226,31 +253,30 @@ const SocialCard: React.FC = () => {
           {/* Application Buttons */}
           <View style={styles.applicationButtonsContainer}>
             {[1, 2, 3].map((item) => (
-              <View key={item} style={[styles.applicationButton, { backgroundColor: colorScheme === 'dark' ? '#202020' : '#E0E0E0' }]}>
+              <View key={item} style={[styles.applicationButton, themeStyles.applicationButtonBg]}>
                 <View style={styles.applicationButtonContent}>
                   <Ionicons
                     name="people"
                     size={20}
-                    color={secondaryTextColor}
+                    color={themeStyles.secondaryText.color}
                   />
-                  <Text style={[styles.applicationButtonText, { color: textColor }]}>
+                  <Text style={[styles.applicationButtonText, themeStyles.text]}>
                     Apply for Cyber Security Engi Roll
                   </Text>
                 </View>
-                <TouchableOpacity style={[styles.applyButton, { backgroundColor: buttonBg }]}>
-                  <Text style={[styles.applyButtonText, { color: buttonText }]}>Apply</Text>
+                <TouchableOpacity style={[styles.applyButton, themeStyles.buttonBg]}>
+                  <Text style={[styles.applyButtonText, themeStyles.buttonText]}>Apply</Text>
                 </TouchableOpacity>
               </View>
             ))}
           </View>
 
-          <View style={[styles.divider, { backgroundColor: dividerColor }]} />
-          <View style={[styles.tabSectionContainer, { backgroundColor: colorScheme === 'dark' ? 'rgba(0, 0, 0, 0.2)' : 'rgba(255, 255, 255, 0.2)' }]}>
+          <View style={[styles.divider, themeStyles.divider]} />
+          <View style={[styles.tabSectionContainer, themeStyles.tabSection]}>
             <Tabs defaultValue="Details">
               <TabsList>
                 <TabsTrigger value="Team">Team Members</TabsTrigger>
                 <TabsTrigger value="Details">Details</TabsTrigger>
-
                 <TabsTrigger value="Comments">Comments (12)</TabsTrigger>
               </TabsList>
 
@@ -260,7 +286,6 @@ const SocialCard: React.FC = () => {
 
               <TabsContent value="Team">
                 <View className="gap-4">
-                  {/* Header positioned at top of image */}
                   <View style={styles.header2}>
                     <View style={styles.avatarContainer2}>
                       <Image
@@ -270,8 +295,8 @@ const SocialCard: React.FC = () => {
                       />
                     </View>
                     <View style={styles.headerText2}>
-                      <Text style={[styles.title2, { color: '#FFF' }]}>{title}</Text>
-                      <Text style={[styles.subtitle2, { color: 'rgba(255,255,255,0.8)' }]}>{subtitle}</Text>
+                      <Text style={[styles.title2, themeStyles.text]}>{title}</Text>
+                      <Text style={[styles.subtitle2, themeStyles.secondaryText]}>{subtitle}</Text>
                     </View>
                   </View>
                   <View style={styles.header2}>
@@ -283,8 +308,8 @@ const SocialCard: React.FC = () => {
                       />
                     </View>
                     <View style={styles.headerText2}>
-                      <Text style={[styles.title2, { color: '#FFF' }]}>{title}</Text>
-                      <Text style={[styles.subtitle2, { color: 'rgba(255,255,255,0.8)' }]}>{subtitle}</Text>
+                      <Text style={[styles.title2, themeStyles.text]}>{title}</Text>
+                      <Text style={[styles.subtitle2, themeStyles.secondaryText]}>{subtitle}</Text>
                     </View>
                   </View>
                   <View style={styles.header2}>
@@ -296,8 +321,8 @@ const SocialCard: React.FC = () => {
                       />
                     </View>
                     <View style={styles.headerText2}>
-                      <Text style={[styles.title2, { color: '#FFF' }]}>{title}</Text>
-                      <Text style={[styles.subtitle2, { color: 'rgba(255,255,255,0.8)' }]}>{subtitle}</Text>
+                      <Text style={[styles.title2, themeStyles.text]}>{title}</Text>
+                      <Text style={[styles.subtitle2, themeStyles.secondaryText]}>{subtitle}</Text>
                     </View>
                   </View>
                 </View>
@@ -305,34 +330,30 @@ const SocialCard: React.FC = () => {
 
               <TabsContent value="Comments">
                 <View style={styles.tabContentContainer}>
-                  {/* Render comments here */}
-                  <Text style={[styles.description, { color: textColor }]}>
+                  <Text style={[styles.description, themeStyles.text]}>
                     0 Comment(s) for project:
                   </Text>
 
                   {/* Comment Input */}
-                  <View style={[styles.commentContainer, { backgroundColor: "transprent" }]}>
+                  <View style={[styles.commentContainer, themeStyles.commentcontainer, { backgroundColor: "transparent" }]}>
                     <TextInput
-                      style={[styles.commentInput, { color: textColor }]}
+                      style={[styles.commentInput, themeStyles.text]}
                       placeholder="Write a comment..."
-                      placeholderTextColor={secondaryTextColor}
+                      placeholderTextColor={themeStyles.secondaryText.color}
                     />
                     <TouchableOpacity
-                      style={styles.commentButton}
+                      style={[styles.commentButton, themeStyles.commentButtonBg]}
                       activeOpacity={0.7}
                     >
-                      <CustomShare  size={20} color={actionIconColor} />
+                      <CustomShare size={20} color={themeStyles.actionIcon.color} />
                     </TouchableOpacity>
                   </View>
                 </View>
               </TabsContent>
             </Tabs>
           </View>
-
         </View>
       </ScrollView>
-
-
     </SafeAreaView>
   );
 };
@@ -584,7 +605,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 30,
     backgroundColor: "",
-    borderColor: "#fff",
     borderWidth: 0.3,
     paddingLeft: 10,
     paddingRight: 3,

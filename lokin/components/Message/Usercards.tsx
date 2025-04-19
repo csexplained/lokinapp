@@ -41,7 +41,7 @@ const Usercard = ({ id, name, status, lastMessage, time, unreadCount = 0, isOnli
             color: colorScheme === 'dark' ? '#FFFFFF' : '#000000',
         },
         statusText: {
-            color: colorScheme === 'dark' ? '#AAAAAA' : '#666666',
+            color: colorScheme === 'dark' ? '#AAAAAA' : '#ffffff',
         },
         lastMessage: {
             color: colorScheme === 'dark' ? '#CCCCCC' : '#444444',
